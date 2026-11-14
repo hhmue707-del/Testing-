@@ -14,7 +14,7 @@ TOKEN = os.getenv("BOT_TOKEN", "9075322512:AAEzBbY9liRE1QdB2b_ppIxOvMfkW9H78CU")
 TZ = ZoneInfo("Asia/Yangon")          # pip install tzdata
 GROUP_ID = -1002386132084 
 REPORT_TO = 5641996451                # 24h report လက်ခံမယ့်သူ
-CMD_USER = 8837432063                 # /SendNow သုံးခွင့်ရှိသူ
+CMD_USER = 5641996451                 # /SendNow သုံးခွင့်ရှိသူ
 REPORT_HOUR = 3                       # နေ့စဉ် မနက် 3:00 မှာ report ပို့ပြီး reset
 
 # shifts: [("HH:MM", "HH:MM"), ...]  (late တွက်မယ့် အချိန်)
