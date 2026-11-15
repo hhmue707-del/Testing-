@@ -15,7 +15,7 @@ from telegram.ext import (
 )
 
 # ============ CONFIG ============
-TOKEN = os.getenv("BOT_TOKEN", "8978672786:AAEI3A9CzPwfmhKHXvE5NinbBHcfJRO4sU0")
+TOKEN = os.getenv("BOT_TOKEN", "9075322512:AAEzBbY9liRE1QdB2b_ppIxOvMfkW9H78CU")
 TZ = ZoneInfo("Asia/Yangon")          # pip install tzdata
 GROUP_ID = -1002386132084
 REPORT_TO = 5641996451                # 24h report လက်ခံမယ့်သူ
