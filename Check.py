@@ -16,6 +16,7 @@ from telegram.ext import (
 
 # ============ CONFIG ============
 # Token ကို environment variable (BOT_TOKEN) ထဲမှာပဲ ထည့်ပါ။ Code ထဲ တိုက်ရိုက်မရေးပါနဲ့
+#   export BOT_TOKEN="123456:ABC..."
 TOKEN = os.getenv("BOT_TOKEN", "9075322512:AAHKkT7asPtuXWnwMcpD-d5y21TTgmkaWd8")
 TZ = ZoneInfo("Asia/Yangon")          # pip install tzdata
 GROUP_ID = -1002386132084
@@ -532,6 +533,9 @@ async def add_cancel(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
 
 
 def main():
+    if not TOKEN:
+        raise SystemExit('BOT_TOKEN မရှိပါ။ အရင်ဆုံး: export BOT_TOKEN="သင့် token"')
+
     load_extra()
     load_settings()
     app = ApplicationBuilder().token(TOKEN).build()
@@ -552,5 +556,19 @@ def main():
     app.add_handler(CommandHandler("sendnow", send_now))              # /SendNow
     app.add_handler(CommandHandler("dashboard", dashboard))           # /Dashboard
     app.add_handler(CommandHandler("testreport", test_report))        # /testreport
-    app.add_handler(CommandHandler("task", task_cmd))                 # /Task [number]  (ဘယ်သူမဆို)
-   
+    app.add_handler(CommandHandler("task", task_cmd))                 # /Task
+    app.add_handler(CommandHandler("remove_admin", remove_admin))     # /Remove_admin
+    app.add_handler(MessageHandler(filters.Chat(GROUP_ID) & ~filters.COMMAND, on_message))
+
+    # နေ့စဉ် မနက် 3:00 မှာ report ပို့ပြီး reset (python-telegram-bot[job-queue] လိုပါတယ်)
+    app.job_queue.run_daily(
+        daily_report,
+        time=dt.time(REPORT_HOUR, REPORT_MINUTE, tzinfo=TZ),
+    )
+
+    print("Bot is running...")
+    app.run_polling()
+
+
+if __name__ == "__main__":
+    main()
