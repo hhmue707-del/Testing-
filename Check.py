@@ -16,7 +16,7 @@ from telegram.ext import (
 
 # ============ CONFIG ============
 # Token ကို environment variable (BOT_TOKEN) ထဲမှာပဲ ထည့်ပါ။ Code ထဲ တိုက်ရိုက်မရေးပါနဲ့
-TOKEN = os.getenv("BOT_TOKEN", "9075322512:AAERcZfpKkBsfleRyvUwFafWCbJbtddHAyU")
+TOKEN = os.getenv("BOT_TOKEN", "9075322512:AAHKkT7asPtuXWnwMcpD-d5y21TTgmkaWd8")
 TZ = ZoneInfo("Asia/Yangon")          # pip install tzdata
 GROUP_ID = -1002386132084
 REPORT_TO = 5641996451                # 24h report လက်ခံမယ့်သူ
